@@ -1,0 +1,21 @@
+# REDIRECT ALL TRAFFIC TO HTTPS
+RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# TURN OFF ALL FOLDER WIHTOUT INDEX PAGE
+Options -Indexes
+
+# Use PHP5 as default
+#AddHandler application/x-httpd-php .php
+#AddHandler application/x-httpd-php .html
+
+
+
+RewriteEngine on
+# VIRTUAL OFFICE REDIRECTION
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !file
+RewriteRule	resources/(.+)/(.+)/(.+)/(.+)/(.+)/?$  developer/api/process/file.php?process=$1&type=$2&pri=$3&sec=$4&third=$5 [QSA,NC]  
